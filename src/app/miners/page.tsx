@@ -43,19 +43,20 @@ export default function MinersPage() {
         poll();
     }, []);
 
-    // Show loading while fetching data
-    if (loading) return <LoadingProgress progress={progress} />;
-
     return (
-        <>
+        <div className="h-full flex flex-col">
             <PageTitle title="Miners" description="Here you can find all miners stored on the database" />
-            <div className="bg-secondary p-6 rounded-sm border-primary">
-                <div className="flex flex-col gap-4">
-                    {miners.map((miner) => (
-                        <MinerCard key={miner.name} miner={miner} />
-                    ))}
-                </div>
+            <div className="flex-1 bg-secondary p-6 rounded-sm border-primary overflow-auto">
+                {loading ? (
+                    <LoadingProgress title="Scraping miners..." progress={progress} />
+                ) : (
+                    <div className="flex flex-col gap-4">
+                        {miners.map((miner) => (
+                            <MinerCard key={miner.name} miner={miner} />
+                        ))}
+                    </div>
+                )}
             </div>
-        </>
+        </div>
     );
 }

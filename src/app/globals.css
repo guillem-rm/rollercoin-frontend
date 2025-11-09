@@ -90,8 +90,8 @@ html {
 }
 
 .custom-spinner {
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
     border: 6px solid var(--white-opacity-50);
     border-top-color: var(--primary-blue);
     border-radius: 50%;
