@@ -1,26 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    --bg-primary: #181928;
+    --bg-secondary: #2F3045;
+    --bg-tertiary: #3C3A57;
+
+    --text-white: #FFFFFF;
+    --text-primary: #C3B0D0;
+
+    --primary-blue: #03E1E4;
+    --common-color: #DDDDDD;
+    --uncommon-color: #2BD600;
+    --rare-color: #03E1E4;
+    --epic-color: #FF2FD1;
+    --legendary-color: #FFDC00;
+    --unreal-color: #EB0000;
+
+    --border-primary: #6A668A;
+
+    --white-opacity-50: #FFFFFF50;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+    font-family: "Roboto", sans-serif;
+    background-color: var(--bg-primary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Background Colors */
+.bg-primary {
+    background-color: var(--bg-primary);
+}
+.bg-secondary {
+    background-color: var(--bg-secondary);
+}
+.bg-tertiary {
+    background-color: var(--bg-tertiary);
+}
+.bg-white-opacity-50 {
+    background-color: var(--white-opacity-50);
+}
+.bg-primary-blue {
+    background-color: var(--primary-blue);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Text Colors */
+.text-white {
+    color: var(--text-white);
+}
+.text-primary {
+    color: var(--text-primary);
+}
+.text-white-opacity-50 {
+    color: var(--white-opacity-50);
+}
+.text-common {
+    color: var(--common-color);
+}
+.text-uncommon {
+    color: var(--uncommon-color);
+}
+.text-rare {
+    color: var(--rare-color);
+}
+.text-epic {
+    color: var(--epic-color);
+}
+.text-legendary {
+    color: var(--legendary-color);
+}
+.text-unreal {
+    color: var(--unreal-color);
+}
+
+/* Borders */
+.border-primary {
+    border: 1px solid var(--border-primary);
+}
+
+/* Other Styles */
+.sidebar-item i {
+    transition: transform 0.3s;
+}
+.sidebar-item:hover {
+    background-color: var(--bg-tertiary);
+}
+.sidebar-item:hover i {
+    transform: scale(1.1);
+}
+
+.custom-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 6px solid var(--white-opacity-50);
+    border-top-color: var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes spin {
+    to { 
+        transform: rotate(360deg); 
+    }
 }

@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Database } from "lucide-react";
+import { SquareChevronRight, SquareChevronLeft, Database, Warehouse } from "lucide-react";
 
 interface SidebarItem {
     name: string;
@@ -9,19 +10,35 @@ interface SidebarItem {
     icon: any;
 }
 
+// Define sidebar items
 const items: SidebarItem[] = [
     { 
         name: "Miners", 
         href: "/miners", 
         icon: <Database /> 
     },
+    { 
+        name: "Room", 
+        href: "/room", 
+        icon: <Warehouse /> 
+    },
 ];
 
 export const Sidebar = () => {
+    // Get current pathname to determine active item
     const pathname = usePathname();
 
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
-        <aside className="w-48 bg-gray-800 text-white min-h-screen p-4">
+        <aside className={`${isOpen ? "w-48" : "w-20"} bg-secondary min-h-screen px-4 py-8 transition-all duration-300 flex flex-col`}>
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="mb-6 pl-3 text-primary hover:cursor-pointer"
+            >
+                {isOpen ? <SquareChevronLeft size={24} /> : <SquareChevronRight size={24} />}
+            </button>
+
             <ul className="space-y-2">
                 {items.map(item => {
                     const isActive = pathname === item.href;
@@ -29,13 +46,16 @@ export const Sidebar = () => {
                         <li key={item.name}>
                             <a
                                 href={item.href}
-                                className={`flex items-center p-2 rounded hover:bg-gray-700 transition-colors
-                                ${isActive ? "bg-gray-700" : ""}`}
+                                className={`flex gap-2 items-center p-3 rounded sidebar-item`}
                             >
-                                <span className={`mr-2 ${isActive ? "text-yellow-400" : "text-gray-400"}`}>
+                                <i className={`${isActive ? "text-white" : "text-primary"}`}>
                                     {item.icon}
-                                </span>
-                                <span>{item.name}</span>
+                                </i>
+                                {isOpen && (
+                                    <span className={`${isActive ? "text-white" : "text-primary"}`}>
+                                        {item.name}
+                                    </span>
+                                )}
                             </a>
                         </li>
                     );
