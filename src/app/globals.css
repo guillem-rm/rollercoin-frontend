@@ -17,6 +17,9 @@
     --legendary-color: #FFDC00;
     --unreal-color: #EB0000;
 
+    --true-color: #177100;
+    --false-color: #960000;
+
     --border-primary: #6A668A;
 
     --white-opacity-50: #FFFFFF50;
@@ -42,6 +45,12 @@ html {
 }
 .bg-primary-blue {
     background-color: var(--primary-blue);
+}
+.bg-true {
+    background-color: var(--true-color);
+}
+.bg-false {
+    background-color: var(--false-color);
 }
 
 /* Text Colors */
@@ -71,6 +80,9 @@ html {
 }
 .text-unreal {
     color: var(--unreal-color);
+}
+.text-true {
+    color: var(--true-color);
 }
 
 /* Borders */
