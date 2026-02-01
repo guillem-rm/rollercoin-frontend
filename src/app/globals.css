@@ -89,6 +89,18 @@ html {
 .border-primary {
     border: 1px solid var(--border-primary);
 }
+.border-primary-2 {
+    border: 2px solid var(--border-primary);
+}
+.border-primary-blue {
+    border: 1px solid var(--primary-blue);
+}
+
+/* Inputs */
+input[type="text"]:focus {
+    outline: none;
+    border: 1px solid var(--primary-blue);
+}
 
 /* Other Styles */
 .sidebar-item i {

@@ -17,8 +17,8 @@ export const MinerCard = ({ miner }: MinerCardProps) => {
     }));
 
     return (
-        <div className="rounded border-primary p-4 px-8 flex gap-4">
-            <div className="flex-1 flex flex-col items-center">
+        <div className="rounded border-primary p-4 px-8 flex gap-8">
+            <div className="flex-1 flex flex-col items-center justify-center">
                 <h3 className="w-full font-bold text-lg text-white mb-1">{miner.name}</h3>
                 {miner.imageUrl && (
                     <div className="w-full bg-primary rounded mb-2 px-2 py-1 flex justify-center">
@@ -41,11 +41,11 @@ export const MinerCard = ({ miner }: MinerCardProps) => {
                 </div>
             </div>
 
-            <div className="flex-3 flex flex-col mt-4">
-                <div className="grid grid-cols-3 text-sm font-bold text-white p-2">
+            <div className="flex-3 flex flex-col gap-1 justify-center">
+                <div className="grid grid-cols-[50px_1fr_1fr] text-sm font-bold text-white p-2 gap-1 text-center">
                     <span></span>
-                    <span>Power</span>
-                    <span className="text-center">Bonus</span>
+                    <span className="rounded bg-primary px-2 py-1">Power</span>
+                    <span className="rounded bg-primary px-2 py-1">Bonus</span>
                 </div>
                 {Object.entries(miner.categories).map(([cat, data], index, arr) => {
                     let powerDiff: string | null = null;
@@ -58,25 +58,30 @@ export const MinerCard = ({ miner }: MinerCardProps) => {
                     }
 
                     return (
-                        <div key={cat} className="flex flex-col gap-1">
-                            <div className="grid grid-cols-3 text-sm text-white bg-secondary rounded px-2 py-1">
-                                <div className="flex justify-center">
-                                    <img src={`/images/miner-categories/${cat}.png`} alt={cat} className="h-[16px]" />
+                        <div key={cat} className="flex flex-col">
+                            <div className="grid grid-cols-[50px_1fr_1fr] text-sm text-white bg-secondary rounded px-2 gap-1">
+                                <div className="flex py-1">
+                                    <img src={`/images/miner-categories/${cat}.png`} alt={cat} className="h-[18px]" />
                                 </div>
-                                <span className="flex justify-between gap-1">
+                                <span className="flex justify-between gap-1 px-4 py-1 rounded bg-primary">
                                     {formatHashPower(data.power)}
                                     {index > 0 && (
                                         <span className="text-xs text-green-400">({powerDiff})</span>
                                     )}
                                 </span>
-                                <span className="text-center">{data.bonus}%</span>
+                                <span className="flex justify-between gap-1 px-10 py-1 rounded bg-primary">
+                                    {data.bonus}%
+                                    {index > 0 && (
+                                        <span className="text-xs text-green-400">({bonusDiff})</span>
+                                    )}
+                                </span>
                             </div>
                         </div>
                     );
                 })}
             </div>
 
-            <div className="flex-2 flex flex-col gap-1">
+            <div className="flex-2 flex flex-col gap-1 justify-center">
                 <div className="rounded bg-primary p-2 flex gap-2 items-center">
                     <CircleGauge className="text-rare" size={14} />
                     <p className="text-white text-sm font-bold">Power</p>
