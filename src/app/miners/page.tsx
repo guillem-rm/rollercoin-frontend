@@ -30,7 +30,7 @@ export default function MinersPage() {
                     setMiners(minersData);
                     setLoading(false);
                 } else {
-                    setTimeout(poll, 2000);
+                    setTimeout(poll, 1000);
                 }
             } 
             catch (err) {
@@ -51,9 +51,15 @@ export default function MinersPage() {
                     <LoadingProgress title="Scraping miners..." progress={progress} />
                 ) : (
                     <div className="flex flex-col gap-4">
-                        {miners.map((miner) => (
-                            <MinerCard key={miner.name} miner={miner} />
-                        ))}
+                        {miners.length === 0 ? (
+                            <div className="text-center text-white-opacity-50 p-4">
+                                No miners found in the database.
+                            </div>
+                        ) : (
+                            miners.map((miner) => (
+                                <MinerCard key={miner.name} miner={miner} />
+                            ))
+                        )}
                     </div>
                 )}
             </div>
